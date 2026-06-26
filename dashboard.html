@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Operación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 p-8 font-sans">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">Dashboard de Operación de Máquina</h1>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Promedios Diarios</h2>
+                <canvas id="graficoPromedios"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Tiempo de Operación (Suma Tan Delta)</h2>
+                <canvas id="graficoOperacion"></canvas>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="bg-gray-800 text-white p-4">
+                <h2 class="text-xl font-bold">Resumen de Extremos por Día</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-gray-200 text-gray-600 uppercase text-center">
+                        <tr>
+                            <th class="p-3">Fecha</th>
+                            <th class="p-3">Min Tan Delta</th>
+                            <th class="p-3">Max Tan Delta</th>
+                            <th class="p-3">Min Temp Aceite</th>
+                            <th class="p-3">Max Temp Aceite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-02-28</td>
+            <td class="p-3 text-indigo-600">893.88</td>
+            <td class="p-3 text-indigo-600">906.12</td>
+            <td class="p-3 text-emerald-600">67.96</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-01</td>
+            <td class="p-3 text-indigo-600">851.02</td>
+            <td class="p-3 text-indigo-600">942.86</td>
+            <td class="p-3 text-emerald-600">23.88</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-02</td>
+            <td class="p-3 text-indigo-600">857.14</td>
+            <td class="p-3 text-indigo-600">942.86</td>
+            <td class="p-3 text-emerald-600">27.14</td>
+            <td class="p-3 text-emerald-600">70.41</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-03</td>
+            <td class="p-3 text-indigo-600">857.14</td>
+            <td class="p-3 text-indigo-600">924.49</td>
+            <td class="p-3 text-emerald-600">27.14</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-04</td>
+            <td class="p-3 text-indigo-600">857.14</td>
+            <td class="p-3 text-indigo-600">942.86</td>
+            <td class="p-3 text-emerald-600">27.96</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-05</td>
+            <td class="p-3 text-indigo-600">851.02</td>
+            <td class="p-3 text-indigo-600">912.24</td>
+            <td class="p-3 text-emerald-600">25.51</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-06</td>
+            <td class="p-3 text-indigo-600">851.02</td>
+            <td class="p-3 text-indigo-600">924.49</td>
+            <td class="p-3 text-emerald-600">25.51</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-07</td>
+            <td class="p-3 text-indigo-600">844.9</td>
+            <td class="p-3 text-indigo-600">900.0</td>
+            <td class="p-3 text-emerald-600">27.96</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-08</td>
+            <td class="p-3 text-indigo-600">838.78</td>
+            <td class="p-3 text-indigo-600">942.86</td>
+            <td class="p-3 text-emerald-600">23.06</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-09</td>
+            <td class="p-3 text-indigo-600">844.9</td>
+            <td class="p-3 text-indigo-600">948.98</td>
+            <td class="p-3 text-emerald-600">25.51</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-10</td>
+            <td class="p-3 text-indigo-600">857.14</td>
+            <td class="p-3 text-indigo-600">912.24</td>
+            <td class="p-3 text-emerald-600">26.33</td>
+            <td class="p-3 text-emerald-600">72.04</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-11</td>
+            <td class="p-3 text-indigo-600">851.02</td>
+            <td class="p-3 text-indigo-600">906.12</td>
+            <td class="p-3 text-emerald-600">25.51</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-12</td>
+            <td class="p-3 text-indigo-600">851.02</td>
+            <td class="p-3 text-indigo-600">906.12</td>
+            <td class="p-3 text-emerald-600">25.51</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-13</td>
+            <td class="p-3 text-indigo-600">851.02</td>
+            <td class="p-3 text-indigo-600">912.24</td>
+            <td class="p-3 text-emerald-600">25.51</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-14</td>
+            <td class="p-3 text-indigo-600">851.02</td>
+            <td class="p-3 text-indigo-600">912.24</td>
+            <td class="p-3 text-emerald-600">35.31</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-15</td>
+            <td class="p-3 text-indigo-600">844.9</td>
+            <td class="p-3 text-indigo-600">942.86</td>
+            <td class="p-3 text-emerald-600">26.33</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-16</td>
+            <td class="p-3 text-indigo-600">838.78</td>
+            <td class="p-3 text-indigo-600">936.73</td>
+            <td class="p-3 text-emerald-600">23.88</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-17</td>
+            <td class="p-3 text-indigo-600">844.9</td>
+            <td class="p-3 text-indigo-600">1040.82</td>
+            <td class="p-3 text-emerald-600">27.14</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-18</td>
+            <td class="p-3 text-indigo-600">838.78</td>
+            <td class="p-3 text-indigo-600">942.86</td>
+            <td class="p-3 text-emerald-600">23.88</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-19</td>
+            <td class="p-3 text-indigo-600">832.65</td>
+            <td class="p-3 text-indigo-600">924.49</td>
+            <td class="p-3 text-emerald-600">24.69</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-20</td>
+            <td class="p-3 text-indigo-600">838.78</td>
+            <td class="p-3 text-indigo-600">936.73</td>
+            <td class="p-3 text-emerald-600">23.88</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-21</td>
+            <td class="p-3 text-indigo-600">838.78</td>
+            <td class="p-3 text-indigo-600">924.49</td>
+            <td class="p-3 text-emerald-600">24.69</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-22</td>
+            <td class="p-3 text-indigo-600">832.65</td>
+            <td class="p-3 text-indigo-600">906.12</td>
+            <td class="p-3 text-emerald-600">23.06</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-23</td>
+            <td class="p-3 text-indigo-600">832.65</td>
+            <td class="p-3 text-indigo-600">918.37</td>
+            <td class="p-3 text-emerald-600">23.06</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-24</td>
+            <td class="p-3 text-indigo-600">832.65</td>
+            <td class="p-3 text-indigo-600">906.12</td>
+            <td class="p-3 text-emerald-600">27.14</td>
+            <td class="p-3 text-emerald-600">74.49</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-25</td>
+            <td class="p-3 text-indigo-600">832.65</td>
+            <td class="p-3 text-indigo-600">1004.08</td>
+            <td class="p-3 text-emerald-600">27.96</td>
+            <td class="p-3 text-emerald-600">73.67</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-26</td>
+            <td class="p-3 text-indigo-600">832.65</td>
+            <td class="p-3 text-indigo-600">1004.08</td>
+            <td class="p-3 text-emerald-600">27.96</td>
+            <td class="p-3 text-emerald-600">83.47</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-27</td>
+            <td class="p-3 text-indigo-600">832.65</td>
+            <td class="p-3 text-indigo-600">936.73</td>
+            <td class="p-3 text-emerald-600">24.69</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-28</td>
+            <td class="p-3 text-indigo-600">832.65</td>
+            <td class="p-3 text-indigo-600">918.37</td>
+            <td class="p-3 text-emerald-600">27.14</td>
+            <td class="p-3 text-emerald-600">71.22</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-29</td>
+            <td class="p-3 text-indigo-600">826.53</td>
+            <td class="p-3 text-indigo-600">924.49</td>
+            <td class="p-3 text-emerald-600">25.51</td>
+            <td class="p-3 text-emerald-600">74.49</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-30</td>
+            <td class="p-3 text-indigo-600">826.53</td>
+            <td class="p-3 text-indigo-600">906.12</td>
+            <td class="p-3 text-emerald-600">24.69</td>
+            <td class="p-3 text-emerald-600">70.41</td>
+        </tr>
+        
+        <tr class="border-b text-center hover:bg-gray-50">
+            <td class="p-3 font-semibold text-gray-700">2026-03-31</td>
+            <td class="p-3 text-indigo-600">826.53</td>
+            <td class="p-3 text-indigo-600">918.37</td>
+            <td class="p-3 text-emerald-600">26.33</td>
+            <td class="p-3 text-emerald-600">70.41</td>
+        </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fechas = ["2026-02-28", "2026-03-01", "2026-03-02", "2026-03-03", "2026-03-04", "2026-03-05", "2026-03-06", "2026-03-07", "2026-03-08", "2026-03-09", "2026-03-10", "2026-03-11", "2026-03-12", "2026-03-13", "2026-03-14", "2026-03-15", "2026-03-16", "2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-21", "2026-03-22", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27", "2026-03-28", "2026-03-29", "2026-03-30", "2026-03-31"];
+        const promedios_tan = [902.38, 903.03, 904.61, 899.54, 901.88, 896.91, 896.23, 894.86, 900.94, 896.72, 898.68, 897.7, 896.43, 896.05, 884.23, 902.68, 902.58, 897.25, 896.52, 894.74, 894.61, 894.21, 890.11, 891.51, 889.34, 889.87, 889.41, 890.19, 889.34, 883.4, 887.41, 890.32];
+        const promedios_temp = [69.55, 64.75, 64.82, 65.58, 66.89, 65.85, 65.52, 67.08, 61.86, 64.31, 65.08, 65.31, 65.74, 64.74, 56.87, 62.59, 61.52, 65.92, 66.57, 66.25, 66.17, 66.1, 63.9, 63.45, 66.52, 66.53, 64.83, 66.51, 64.99, 60.71, 65.51, 60.84];
+        const suma_tan = [541426.51, 764865.26, 1413906.04, 1407783.59, 1424969.3, 1389312.16, 1420524.4, 1412081.55, 1073020.35, 1460761.14, 1463044.8, 1486597.87, 1449526.44, 1461459.1, 2546577.41, 998363.2, 1559657.05, 1423940.73, 1394087.68, 1404746.87, 1401850.95, 1414646.87, 814450.98, 815730.58, 1422942.8, 1454932.59, 1404373.41, 1462585.65, 1425612.19, 1137820.37, 1366616.27, 897440.78];
+
+        const ctxPromedios = document.getElementById('graficoPromedios').getContext('2d');
+        new Chart(ctxPromedios, {
+            type: 'line',
+            data: {
+                labels: fechas,
+                datasets: [
+                    { label: 'Promedio Tan Delta', data: promedios_tan, borderColor: '#4f46e5', tension: 0.1 },
+                    { label: 'Promedio Temp Aceite', data: promedios_temp, borderColor: '#10b981', tension: 0.1 }
+                ]
+            }
+        });
+
+        const ctxOperacion = document.getElementById('graficoOperacion').getContext('2d');
+        new Chart(ctxOperacion, {
+            type: 'bar',
+            data: {
+                labels: fechas,
+                datasets: [{ label: 'Operación Total', data: suma_tan, backgroundColor: '#f59e0b' }]
+            }
+        });
+    </script>
+</body>
+</html>
