@@ -1,0 +1,32 @@
+name: Actualizar Dashboard
+
+on:
+  push:
+    paths:
+      - 'data/**' # Se activa automáticamente al subir archivos a la carpeta data
+
+permissions:
+  contents: write
+
+jobs:
+  procesar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Ejecutar Script
+        run: python script.py
+
+      - name: Guardar cambios en Github
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add public/index.html
+          git commit -m "Automated dashboard update [skip ci]" || echo "No hay cambios"
+          git push
